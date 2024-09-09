@@ -3,7 +3,7 @@ const inputSlider = document.querySelector(".slider");
 const passwordDisplay = document.querySelector(".display");
 
 const copyBtn = document.querySelector("[data-copy]");
-const copyMsg = document.querySelector("[data-copyMesg]");
+const tooltip = document.querySelector(".tooltip");
 const upperCase = document.querySelector("#uppercase");
 const lowerCase = document.querySelector("#lowercase");
 const number = document.querySelector("#number");
@@ -20,20 +20,31 @@ console.log(indicator);
 let password = "";
 let passwordLength = 10;
 let checkCount = 0;
-// set strength circle color to grey
 handleSlider();
 // set passwordLength  
-
+// set strength circle color to grey
+ setIndicator("#ccc");
+ 
 // the only function of handle slider is to reflect the value of passwordLength on screen
 function handleSlider(){
   inputSlider.value = passwordLength;
   lengthDisplay.innerText = passwordLength;
 //   remaining part
-}
+ // Set the background size of the slider to reflect the chosen length visually
+ const min = inputSlider.min;
+ const max = inputSlider.max;
+
+ // Calculate the background size percentage based on the password length
+  // Calculate the percentage
+  const percentage = ((passwordLength - min) * 100) / (max - min);
+
+  // Update the slider's background size
+  inputSlider.style.backgroundSize = `${percentage}% 100%`;} 
 
 function setIndicator(color){
         indicator.style.backgroundColor = color;
         // shadow
+        indicator.style.boxShadow = `0px 0px 6px ${color}`;
 }
 
 function getRandomInteger(min, max){
@@ -83,17 +94,17 @@ function calculateStrength(){
 async function copyContent(){
     try{
         await navigator.clipboard.writeText(passwordDisplay.value);
-        copyMsg.innerText = "Copied";
+        tooltip.innerText = "Copied";
     }
     catch(e){
-       copyMsg.innerText = "Failed";
+       tooltip.innerText = "Failed";
     }
 
     // to make copyMsg visisble
-      copyMsg.classList.add("active");
+      tooltip.classList.add("active");
 
       setTimeout(() => {
-        copyMsg.classList.remove("active")
+        tooltip.classList.remove("active")
       }, 2000);
 }
 
