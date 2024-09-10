@@ -39,7 +39,8 @@ function handleSlider(){
   const percentage = ((passwordLength - min) * 100) / (max - min);
 
   // Update the slider's background size
-  inputSlider.style.backgroundSize = `${percentage}% 100%`;} 
+  inputSlider.style.background = `linear-gradient(to right, rgb(140, 187, 241) ${percentage}%, #ddd ${percentage}%)`;;
+} 
 
 function setIndicator(color){
         indicator.style.backgroundColor = color;

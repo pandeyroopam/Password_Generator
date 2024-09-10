@@ -185,7 +185,7 @@
     border: none;
     height: 1rem;
     cursor: pointer;
-    background-image:linear-gradient(rgb(140, 187, 241), rgb(94, 97, 100) )   ;
+    background-image:linear-gradient(to right, rgb(140, 187, 241), rgb(94, 97, 100) )   ;
     border-radius: 1rem;
     margin-top: 2rem;
     margin-bottom: 1.5rem;
